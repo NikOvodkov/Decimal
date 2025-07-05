@@ -108,7 +108,7 @@ int s21_get_scale(s21_decimal value);
  * @param value Указатель на число.
  * @param scale Новое значение масштаба (должно быть в диапазоне [0, 28]).
  */
-void s21_set_scale(s21_decimal *value, int scale);
+void s21_set_scale(s21_decimal *value, int new_scale);
 
 /**
  * @brief Обнуляет все биты числа (устанавливает его в ноль).
@@ -122,5 +122,76 @@ void s21_clear_decimal(s21_decimal *value);
  * @param dst Целевое число.
  */
 void s21_copy_decimal(s21_decimal src, s21_decimal *dst);
+
+/**
+ * @brief Проверяет, является ли число нулём.
+ * @param value Число для проверки.
+ * @return 1, если число равно нулю, иначе 0.
+ */
+int s21_check_zero(s21_decimal value);
+
+/**
+ * @brief Умножает число на 10, увеличивая масштаб на 1.
+ * @param value Указатель на число, которое нужно умножить.
+ */
+void s21_mul_10(s21_decimal *value);
+
+/**
+ * @brief Делит число на 10, уменьшая масштаб на 1.
+ * @param value Указатель на число, которое нужно разделить.
+ */
+void s21_div_10(s21_decimal *value);
+
+/* ========================================================================= */
+/*                                 СРАВНЕНИЕ                                 */
+/* ========================================================================= */
+
+/**
+ * @brief Сравнивает два числа типа s21_decimal.
+ * @param value_1 Первое число для сравнения.
+ * @param value_2 Второе число для сравнения.
+ * @return 1, если value_1 меньше value_2, иначе 0.
+ */
+int s21_is_less(s21_decimal value_1, s21_decimal value_2);
+
+/**
+ * @brief Сравнивает два числа типа s21_decimal.
+ * @param value_1 Первое число для сравнения.
+ * @param value_2 Второе число для сравнения.
+ * @return 1, если value_1 меньше или равно value_2, иначе 0.
+ */
+int s21_is_less_or_equal(s21_decimal value_1, s21_decimal value_2);
+
+/**
+ * @brief Сравнивает два числа типа s21_decimal.
+ * @param value_1 Первое число для сравнения.
+ * @param value_2 Второе число для сравнения.
+ * @return 1, если value_1 больше value_2, иначе 0.
+ */
+int s21_is_greater(s21_decimal value_1, s21_decimal value_2);
+
+/**
+ * @brief Сравнивает два числа типа s21_decimal.
+ * @param value_1 Первое число для сравнения.
+ * @param value_2 Второе число для сравнения.
+ * @return 1, если value_1 больше или равно value_2, иначе 0.
+ */
+int s21_is_greater_or_equal(s21_decimal value_1, s21_decimal value_2);
+
+/**
+ * @brief Проверяет, равны ли два числа типа s21_decimal.
+ * @param value_1 Первое число для сравнения.
+ * @param value_2 Второе число для сравнения.
+ * @return 1, если числа равны, иначе 0.
+ */
+int s21_is_equal(s21_decimal value_1, s21_decimal value_2);
+
+/**
+ * @brief Проверяет, не равны ли два числа типа s21_decimal.
+ * @param value_1 Первое число для сравнения.
+ * @param value_2 Второе число для сравнения.
+ * @return 1, если числа не равны, иначе 0.
+ */
+int s21_is_not_equal(s21_decimal value_1, s21_decimal value_2);
 
 #endif  // S21_DECIMAL_H
