@@ -1,6 +1,6 @@
 #include "../s21_decimal.h"
 
-// Stub implementation of s21_is_not_equal
-int s21_is_not_equal(...) {
-    return 0;
+int s21_is_not_equal(s21_decimal value_1,
+                     s21_decimal value_2) {  // value_1 != value_2
+  return !s21_is_equal(value_1, value_2);
 }
