@@ -1,9 +1,11 @@
 #include <check.h>
-
-#include "s21_string.h"
+#include <stdlib.h>
+#include "../s21_decimal.h"
 
 TCase *s21_add_suite(void);
 TCase *s21_div_suite(void);
+TCase *s21_bit_suite(void);
+TCase *s21_scale_suite(void);
 TCase *s21_floor_suite(void);
 TCase *s21_from_decimal_to_float_suite(void);
 TCase *s21_from_decimal_to_int_suite(void);
@@ -28,6 +30,8 @@ int main(void) {
   // Добавляем тестовые наборы
 
   suite_add_tcase(s, s21_add_suite());
+  suite_add_tcase(s, s21_bit_suite());
+  suite_add_tcase(s, s21_scale_suite());
   suite_add_tcase(s, s21_div_suite());
   suite_add_tcase(s, s21_floor_suite());
   suite_add_tcase(s, s21_from_decimal_to_float_suite());
@@ -51,6 +55,9 @@ int main(void) {
   srunner_run_all(sr, CK_NORMAL);
   number_failed = srunner_ntests_failed(sr);
   srunner_free(sr);
+
+
+
 
   return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
