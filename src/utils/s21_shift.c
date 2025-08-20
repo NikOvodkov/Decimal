@@ -1,3 +1,5 @@
+#include "../s21_decimal.h"
+
 /**
  * @brief Сдвигает мантиссу вправо на указанное количество бит.
  *
@@ -33,18 +35,19 @@ int s21_shift_right(s21_decimal *value, int shift) {
  * @return int 1 — переполнение, 0 — успех.
  */
 int s21_shift_left(s21_decimal *value, int shift) {
-    if (shift < 1 || shift > 32) return 1;
+    int result = 0;
+    if (shift < 1 || shift > 32) result = 1;
+    else {
+        uint64_t carry = 0;
+        for (int i = 0; i < 3; i++) {
+            uint64_t current = (uint64_t)value->bits[i];
+            uint64_t shifted = (current << shift) | carry;
+            value->bits[i] = (int)(shifted & 0xFFFFFFFF); // Сохраняем младшие 32 бита
+            carry = shifted >> 32;                        // Переносим старшие биты
+        }
 
-    uint64_t carry = 0;
-    for (int i = 0; i < 3; i++) {
-        uint64_t current = (uint64_t)value->bits[i];
-        uint64_t shifted = (current << shift) | carry;
-        value->bits[i] = (int)(shifted & 0xFFFFFFFF); // Сохраняем младшие 32 бита
-        carry = shifted >> 32;                        // Переносим старшие биты
+        // Проверяем, есть ли остаток в carry — это переполнение
+        if (carry != 0) result = 1;
     }
-
-    // Проверяем, есть ли остаток в carry — это переполнение
-    if (carry != 0) return 1;
-
-    return 0;
+    return result;
 }

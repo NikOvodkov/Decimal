@@ -6,6 +6,7 @@ TCase *s21_add_suite(void);
 TCase *s21_div_suite(void);
 TCase *s21_bit_suite(void);
 TCase *s21_scale_suite(void);
+TCase *s21_shift_suite(void);
 TCase *s21_floor_suite(void);
 TCase *s21_from_decimal_to_float_suite(void);
 TCase *s21_from_decimal_to_int_suite(void);
@@ -32,6 +33,7 @@ int main(void) {
   suite_add_tcase(s, s21_add_suite());
   suite_add_tcase(s, s21_bit_suite());
   suite_add_tcase(s, s21_scale_suite());
+  suite_add_tcase(s, s21_shift_suite());
   suite_add_tcase(s, s21_div_suite());
   suite_add_tcase(s, s21_floor_suite());
   suite_add_tcase(s, s21_from_decimal_to_float_suite());
