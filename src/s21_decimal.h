@@ -249,3 +249,5 @@ int s21_from_decimal_to_float(s21_decimal src, float *dst);
 int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result);
 
 #endif  // S21_DECIMAL_H
+
+// test comment
